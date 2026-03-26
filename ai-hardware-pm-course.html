@@ -5,27 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI 硬件产品经理：完成你的产品思考与工作流程</title>
   <style>
+
     :root {
-      --bg: #f2ede5;
-      --bg-deep: #d8d2c6;
-      --panel: rgba(250, 247, 240, 0.8);
-      --panel-strong: rgba(255, 252, 246, 0.92);
-      --ink: #152126;
-      --muted: #607077;
-      --line: rgba(21, 33, 38, 0.1);
-      --teal: #0f766e;
-      --teal-2: #134e4a;
-      --amber: #c97a17;
-      --amber-2: #9a4f06;
-      --sky: #dff3f5;
-      --sand: #f5e8d3;
-      --rose: #c2410c;
-      --shadow-xl: 0 34px 90px rgba(18, 26, 31, 0.14);
-      --shadow-md: 0 18px 40px rgba(18, 26, 31, 0.1);
+      --bg: #050a0f;
+      --bg-deep: #020406;
+      --panel: rgba(10, 15, 25, 0.6);
+      --panel-strong: rgba(15, 22, 35, 0.85);
+      --ink: #e2e8f0;
+      --muted: #94a3b8;
+      --line: rgba(148, 163, 184, 0.15);
+      --teal: #00f0ff;
+      --teal-2: #00b8ff;
+      --amber: #ff0055;
+      --amber-2: #d60047;
+      --sky: #0a1f33;
+      --sand: #111827;
+      --rose: #ff2a85;
+      --shadow-xl: 0 34px 90px rgba(0, 240, 255, 0.1);
+      --shadow-md: 0 18px 40px rgba(0, 240, 255, 0.05);
       --radius-xl: 34px;
       --radius-lg: 24px;
       --radius-md: 18px;
       --content-width: min(1320px, calc(100vw - 56px));
+
+      --neon-glow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.3);
+      --neon-glow-red: 0 0 10px rgba(255, 0, 85, 0.5), 0 0 20px rgba(255, 0, 85, 0.3);
     }
 
     * {
@@ -37,15 +41,16 @@
       margin: 0;
       height: 100%;
       overflow: hidden;
+      background-color: var(--bg);
     }
 
     body {
       font-family: "Segoe UI Variable Display", "Bahnschrift", "Microsoft YaHei UI", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at 15% 10%, rgba(15, 118, 110, 0.14), transparent 24%),
-        radial-gradient(circle at 82% 18%, rgba(201, 122, 23, 0.18), transparent 22%),
-        linear-gradient(160deg, #f8f4ee 0%, var(--bg) 54%, #ece4d8 100%);
+        radial-gradient(circle at 15% 10%, rgba(0, 240, 255, 0.08), transparent 24%),
+        radial-gradient(circle at 82% 18%, rgba(255, 0, 85, 0.08), transparent 22%),
+        linear-gradient(160deg, var(--bg-deep) 0%, var(--bg) 54%, #08121a 100%);
     }
 
     body::before {
@@ -54,10 +59,30 @@
       inset: 0;
       pointer-events: none;
       background-image:
-        linear-gradient(rgba(21, 33, 38, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(21, 33, 38, 0.03) 1px, transparent 1px);
-      background-size: 42px 42px;
-      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3), transparent 88%);
+        linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1), transparent 95%);
+      z-index: 0;
+    }
+
+    /* 动态光效点 */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.05) 0%, transparent 50%);
+      animation: pulse-glow 8s infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes pulse-glow {
+      0% { opacity: 0.5; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1.2); }
     }
 
     a,
@@ -89,11 +114,12 @@
       justify-content: space-between;
       gap: 20px;
       padding: 16px 18px;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      background: rgba(255, 251, 246, 0.66);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      background: rgba(5, 10, 15, 0.7);
       backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
       border-radius: 999px;
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-md), inset 0 0 20px rgba(0, 240, 255, 0.05);
       z-index: 20;
     }
 
@@ -110,11 +136,12 @@
       border-radius: 16px;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, var(--teal), #0a3d46);
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.8), rgba(0, 184, 255, 0.4));
       color: #fff;
       font-weight: 800;
       letter-spacing: 0.08em;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), var(--neon-glow);
+      border: 1px solid rgba(0, 240, 255, 0.5);
     }
 
     .brand-copy small,
@@ -160,15 +187,18 @@
       display: grid;
       place-items: center;
       border-radius: 14px;
-      background: rgba(21, 33, 38, 0.05);
+      background: rgba(0, 240, 255, 0.05);
       color: var(--ink);
-      transition: transform 0.25s ease, background 0.25s ease, opacity 0.25s ease;
+      border: 1px solid rgba(0, 240, 255, 0.1);
+      transition: all 0.25s ease;
     }
 
     .nav-btn:hover {
       transform: translateY(-1px);
-      background: rgba(15, 118, 110, 0.1);
+      background: rgba(0, 240, 255, 0.15);
       color: var(--teal);
+      box-shadow: var(--neon-glow);
+      border-color: rgba(0, 240, 255, 0.4);
     }
 
     .nav-btn:disabled {
@@ -198,7 +228,7 @@
       content: "";
       position: absolute;
       inset: 8% 4%;
-      border: 1px solid rgba(255, 255, 255, 0.45);
+      border: 1px solid rgba(0, 240, 255, 0.1);
       border-radius: 42px;
       pointer-events: none;
       opacity: 0.6;
@@ -209,10 +239,11 @@
       min-height: calc(100vh - 150px);
       padding: 34px;
       border-radius: 40px;
-      border: 1px solid rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(0, 240, 255, 0.15);
       background: var(--panel);
-      backdrop-filter: blur(22px);
-      box-shadow: var(--shadow-xl);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: var(--shadow-xl), inset 0 0 40px rgba(0, 0, 0, 0.5);
       display: grid;
       gap: 24px;
       position: relative;
@@ -223,10 +254,10 @@
       content: "";
       position: absolute;
       inset: auto -100px -110px auto;
-      width: 320px;
-      height: 320px;
+      width: 400px;
+      height: 400px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(15, 118, 110, 0.12), transparent 70%);
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.08), transparent 60%);
       pointer-events: none;
     }
 
@@ -234,10 +265,10 @@
       content: "";
       position: absolute;
       inset: -130px auto auto -90px;
-      width: 280px;
-      height: 280px;
+      width: 350px;
+      height: 350px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(201, 122, 23, 0.13), transparent 68%);
+      background: radial-gradient(circle, rgba(255, 0, 85, 0.08), transparent 60%);
       pointer-events: none;
     }
 
@@ -316,7 +347,9 @@
       width: fit-content;
       padding: 10px 14px;
       border-radius: 999px;
-      background: rgba(21, 33, 38, 0.06);
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      color: var(--teal);
     }
 
     .hero-badges,
@@ -335,9 +368,19 @@
     .tool-pill {
       padding: 10px 14px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.6);
-      border: 1px solid rgba(21, 33, 38, 0.08);
+      background: rgba(0, 240, 255, 0.05);
+      border: 1px solid rgba(0, 240, 255, 0.2);
       font-size: 13px;
+      color: var(--ink);
+      box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .badge:hover,
+    .tool-pill:hover {
+      background: rgba(0, 240, 255, 0.15);
+      border-color: rgba(0, 240, 255, 0.5);
+      box-shadow: var(--neon-glow);
     }
 
     .stats {
@@ -356,9 +399,22 @@
     .persona-card,
     .workflow-box {
       border-radius: var(--radius-lg);
-      border: 1px solid rgba(21, 33, 38, 0.08);
-      background: rgba(255, 255, 255, 0.58);
-      box-shadow: 0 12px 30px rgba(18, 26, 31, 0.05);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      background: rgba(10, 20, 30, 0.6);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(0, 240, 255, 0.03);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .stat-card:hover,
+    .panel:hover,
+    .chapter-card:hover,
+    .benefit-card:hover,
+    .persona-card:hover,
+    .workflow-box:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 240, 255, 0.4);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(0, 240, 255, 0.1);
     }
 
     .stat-card {
@@ -369,6 +425,8 @@
       display: block;
       font-size: 30px;
       margin-bottom: 8px;
+      color: var(--teal);
+      text-shadow: var(--neon-glow);
     }
 
     .right-stack,
@@ -413,9 +471,9 @@
     .illustration-card {
       border-radius: 30px;
       padding: 22px;
-      border: 1px solid rgba(21, 33, 38, 0.08);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(238, 247, 246, 0.92));
-      box-shadow: 0 16px 50px rgba(18, 26, 31, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      background: linear-gradient(180deg, rgba(5, 15, 25, 0.8), rgba(2, 8, 15, 0.95));
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(0, 240, 255, 0.05);
       min-height: 100%;
       display: grid;
       align-content: space-between;
@@ -424,13 +482,32 @@
       overflow: hidden;
     }
 
+    .illustration-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.8), transparent);
+    }
+
     .illustration-card.amber {
-      background: linear-gradient(180deg, rgba(255, 253, 249, 0.84), rgba(248, 236, 216, 0.94));
+      border-color: rgba(255, 0, 85, 0.2);
+      background: linear-gradient(180deg, rgba(20, 5, 15, 0.8), rgba(10, 2, 8, 0.95));
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(255, 0, 85, 0.05);
+    }
+
+    .illustration-card.amber::before {
+      background: linear-gradient(90deg, transparent, rgba(255, 0, 85, 0.8), transparent);
     }
 
     .illustration-card.dark {
-      background: linear-gradient(180deg, rgba(24, 38, 45, 0.96), rgba(16, 28, 33, 0.98));
+      background: linear-gradient(180deg, rgba(5, 10, 20, 0.96), rgba(2, 5, 10, 0.98));
       color: #eef7f7;
+      border-color: rgba(148, 163, 184, 0.2);
+    }
+
+    .illustration-card.dark::before {
+      background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.6), transparent);
     }
 
     .illustration-card.dark .panel-label,
@@ -466,6 +543,7 @@
 
     .chapter-card strong {
       font-size: 18px;
+      color: var(--ink);
     }
 
     .chapter-card p {
@@ -477,15 +555,27 @@
     .chapter-chip {
       color: var(--teal);
       font-weight: 700;
+      text-shadow: var(--neon-glow);
     }
 
     .overview-graphic {
       position: relative;
       min-height: 420px;
       border-radius: 30px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(239, 246, 245, 0.9));
-      border: 1px solid rgba(21, 33, 38, 0.08);
+      background: linear-gradient(180deg, rgba(5, 15, 25, 0.8), rgba(2, 8, 15, 0.95));
+      border: 1px solid rgba(0, 240, 255, 0.2);
       overflow: hidden;
+      box-shadow: inset 0 0 40px rgba(0, 240, 255, 0.05);
+    }
+
+    .overview-graphic::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.8) 100%),
+        repeating-linear-gradient(0deg, rgba(0, 240, 255, 0.03) 0px, rgba(0, 240, 255, 0.03) 1px, transparent 1px, transparent 20px),
+        repeating-linear-gradient(90deg, rgba(0, 240, 255, 0.03) 0px, rgba(0, 240, 255, 0.03) 1px, transparent 1px, transparent 20px);
     }
 
     .core-ring {
@@ -496,14 +586,17 @@
       height: 180px;
       transform: translate(-50%, -50%);
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(15, 118, 110, 0.18), rgba(15, 118, 110, 0.08));
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.15), rgba(0, 240, 255, 0.05));
       display: grid;
       place-items: center;
       text-align: center;
       padding: 18px;
       font-weight: 800;
-      color: var(--teal-2);
-      box-shadow: inset 0 0 0 18px rgba(255, 255, 255, 0.38);
+      color: #fff;
+      text-shadow: var(--neon-glow);
+      box-shadow: inset 0 0 0 2px rgba(0, 240, 255, 0.5), 0 0 30px rgba(0, 240, 255, 0.2);
+      border: 1px solid rgba(0, 240, 255, 0.8);
+      z-index: 2;
     }
 
     .orbit-node {
@@ -511,9 +604,18 @@
       width: 180px;
       padding: 16px;
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.84);
-      border: 1px solid rgba(21, 33, 38, 0.07);
-      box-shadow: 0 12px 24px rgba(18, 26, 31, 0.08);
+      background: rgba(10, 20, 30, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(0, 240, 255, 0.1);
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .orbit-node:hover {
+      border-color: rgba(0, 240, 255, 0.8);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), var(--neon-glow);
+      transform: scale(1.05) translateZ(0);
     }
 
     .orbit-node strong {
@@ -568,11 +670,18 @@
     }
 
     .contrast-card.old {
-      background: linear-gradient(180deg, rgba(255, 248, 241, 0.92), rgba(248, 234, 223, 0.78));
+      background: linear-gradient(180deg, rgba(25, 15, 15, 0.8), rgba(15, 5, 5, 0.6));
+      border-color: rgba(255, 0, 85, 0.2);
     }
 
     .contrast-card.new {
-      background: linear-gradient(180deg, rgba(242, 252, 250, 0.96), rgba(220, 245, 240, 0.84));
+      background: linear-gradient(180deg, rgba(10, 30, 40, 0.8), rgba(5, 15, 20, 0.6));
+      border-color: rgba(0, 240, 255, 0.3);
+      box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.05);
+    }
+
+    .contrast-card.new strong {
+      color: var(--teal);
     }
 
     .bullet-list {
@@ -580,18 +689,35 @@
       padding-left: 18px;
     }
 
+    .bullet-list li {
+      margin-bottom: 6px;
+    }
+
     .big-quote {
       font-size: clamp(24px, 3vw, 38px);
       line-height: 1.22;
       letter-spacing: -0.03em;
       max-width: 18ch;
+      color: #fff;
     }
 
     .pull-quote {
       padding: 24px;
       border-radius: 26px;
-      background: linear-gradient(135deg, rgba(15, 118, 110, 0.92), rgba(13, 57, 66, 0.94));
+      background: linear-gradient(135deg, rgba(0, 184, 255, 0.2), rgba(0, 240, 255, 0.05));
+      border: 1px solid rgba(0, 240, 255, 0.3);
       color: #f3fbfb;
+      box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pull-quote::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--teal);
+      box-shadow: var(--neon-glow);
     }
 
     .pull-quote p {
@@ -612,8 +738,15 @@
       align-items: start;
       padding: 14px;
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.52);
-      border: 1px solid rgba(21, 33, 38, 0.07);
+      background: rgba(10, 20, 30, 0.6);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .step-item:hover {
+      background: rgba(10, 30, 45, 0.8);
+      border-color: rgba(0, 240, 255, 0.4);
+      transform: translateX(4px);
     }
 
     .step-no {
@@ -623,8 +756,10 @@
       display: grid;
       place-items: center;
       font-weight: 800;
-      background: rgba(21, 33, 38, 0.06);
+      background: rgba(0, 240, 255, 0.1);
       color: var(--teal);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      text-shadow: var(--neon-glow);
     }
 
     .step-item h4 {
@@ -651,14 +786,16 @@
       width: 12px;
       height: 12px;
       border-radius: 999px;
-      background: rgba(21, 33, 38, 0.2);
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      transition: transform 0.25s ease, background 0.25s ease;
+      background: rgba(148, 163, 184, 0.2);
+      border: 2px solid rgba(148, 163, 184, 0.5);
+      transition: all 0.25s ease;
     }
 
     .dot.active {
       transform: scale(1.35);
       background: var(--teal);
+      border-color: var(--teal);
+      box-shadow: var(--neon-glow);
     }
 
     .matrix {
@@ -666,27 +803,34 @@
       grid-template-columns: 140px repeat(4, minmax(0, 1fr));
       border-radius: 22px;
       overflow: hidden;
-      border: 1px solid rgba(21, 33, 38, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.2);
     }
 
     .matrix div {
       padding: 14px 12px;
-      background: rgba(255, 255, 255, 0.56);
-      border-right: 1px solid rgba(21, 33, 38, 0.07);
-      border-bottom: 1px solid rgba(21, 33, 38, 0.07);
+      background: rgba(10, 20, 30, 0.6);
+      border-right: 1px solid rgba(0, 240, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.1);
       line-height: 1.65;
       font-size: 14px;
+      transition: background 0.2s ease;
+    }
+
+    .matrix div:hover {
+      background: rgba(0, 240, 255, 0.05);
     }
 
     .matrix div:nth-child(5n + 1) {
       font-weight: 700;
-      background: rgba(21, 33, 38, 0.04);
+      background: rgba(0, 240, 255, 0.05);
+      color: #fff;
     }
 
     .matrix .head {
       font-weight: 800;
-      background: rgba(15, 118, 110, 0.1);
-      color: var(--teal-2);
+      background: rgba(0, 240, 255, 0.15);
+      color: var(--teal);
+      text-shadow: var(--neon-glow);
     }
 
     .roadmap {
@@ -700,14 +844,22 @@
       gap: 14px;
       padding: 16px;
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.58);
-      border: 1px solid rgba(21, 33, 38, 0.08);
+      background: rgba(10, 20, 30, 0.6);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .roadmap-item:hover {
+      border-color: rgba(0, 240, 255, 0.4);
+      background: rgba(10, 30, 45, 0.8);
+      transform: translateX(4px);
     }
 
     .roadmap-item strong {
       font-size: 14px;
       color: var(--teal);
       letter-spacing: 0.08em;
+      text-shadow: var(--neon-glow);
     }
 
     .roadmap-item h4 {
@@ -718,7 +870,9 @@
     .closing-banner {
       padding: 24px;
       border-radius: 28px;
-      background: linear-gradient(135deg, rgba(15, 118, 110, 0.96), rgba(11, 42, 49, 0.98));
+      background: linear-gradient(135deg, rgba(0, 184, 255, 0.2), rgba(10, 20, 30, 0.9));
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      box-shadow: inset 0 0 30px rgba(0, 240, 255, 0.1), 0 10px 30px rgba(0, 0, 0, 0.5);
       color: #f5fbfb;
       display: grid;
       gap: 14px;
@@ -738,22 +892,63 @@
     .action-btn {
       padding: 12px 16px;
       border-radius: 999px;
-      background: #fff;
-      color: var(--teal);
+      background: var(--teal);
+      color: #000;
       font-weight: 700;
       text-decoration: none;
+      box-shadow: var(--neon-glow);
+      transition: all 0.2s ease;
+    }
+
+    .action-btn:hover {
+      background: #fff;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+      transform: translateY(-2px);
     }
 
     .action-btn.secondary {
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(0, 240, 255, 0.1);
+      color: var(--teal);
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      box-shadow: none;
+    }
+
+    .action-btn.secondary:hover {
+      background: rgba(0, 240, 255, 0.2);
+      box-shadow: var(--neon-glow);
       color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.18);
     }
 
     .svg-note {
       font-size: 13px;
       color: var(--muted);
       line-height: 1.7;
+    }
+
+    /* 动画类 */
+    .animate-fade-in {
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    .animate-slide-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 0.8s ease forwards;
+    }
+
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+    .delay-400 { animation-delay: 400ms; }
+    .delay-500 { animation-delay: 500ms; }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 1180px) {
@@ -840,6 +1035,8 @@
         grid-column: 1 / -1;
       }
     }
+
+    .drop-shadow-glow { filter: drop-shadow(0 0 10px rgba(0,240,255,0.4)); }
   </style>
 </head>
 <body>
@@ -880,17 +1077,16 @@
           <div class="hero-layout">
             <div>
               <div class="page-kicker">2026 AI-Native Hardware PM</div>
-              <h1>从单兵执行，切换到组织级认知放大</h1>
+              <h1>用 AI Native 方式重构产品思考</h1>
               <p class="lead">
-                这不是一门工具操作说明，而是一门关于组织生产方式重构的内部课程。
-                它讨论的不是“如何更快地产出一份文档”，而是“如何把定义、判断、表达、协同这些高价值动作，从个体经验劳动转为可放大的组织能力”。
+                这不是一门工具操作说明，而是一场关于生产方式的赛博重塑。从单兵作战切换到与 AI 并行共生，让决策、知识储备、和可行性验证转变为可编程、可无限放大的组织能力。
               </p>
               <div class="hero-badges">
-                <span class="badge">讨论先行</span>
-                <span class="badge">知识外脑</span>
+                <span class="badge">AI Native 思考</span>
+                <span class="badge">本地知识库</span>
+                <span class="badge">多模型并发</span>
                 <span class="badge">原型驱动</span>
-                <span class="badge">自动化前置</span>
-                <span class="badge">多线程指挥</span>
+                <span class="badge">可行性预判</span>
               </div>
               <div class="stats">
                 <article class="stat-card">
@@ -914,34 +1110,34 @@
                   <p class="panel-copy">把 PM 的工作台改造成一块 AI 控制台，让个人经验不再只能以加班和口头传承的方式流动。</p>
                 </div>
                 <div class="svg-wrap">
-                  <svg viewBox="0 0 540 420" role="img" aria-label="AI 硬件 PM 控制台插画">
+                  <svg class="drop-shadow-glow" viewBox="0 0 540 420" role="img" aria-label="AI 硬件 PM 控制台插画">
                     <defs>
                       <linearGradient id="heroA" x1="0" x2="1">
-                        <stop offset="0%" stop-color="#0f766e"/>
-                        <stop offset="100%" stop-color="#143f47"/>
+                        <stop offset="0%" stop-color="#00f0ff"/>
+                        <stop offset="100%" stop-color="#0088ff"/>
                       </linearGradient>
                       <linearGradient id="heroB" x1="0" x2="1">
                         <stop offset="0%" stop-color="#f6ede1"/>
-                        <stop offset="100%" stop-color="#ffffff"/>
+                        <stop offset="100%" stop-color="#0f172a"/>
                       </linearGradient>
                     </defs>
                     <rect x="50" y="38" width="440" height="320" rx="34" fill="url(#heroB)" stroke="rgba(21,33,38,0.08)"/>
-                    <rect x="80" y="72" width="160" height="246" rx="28" fill="#16262d"/>
-                    <rect x="96" y="96" width="128" height="18" rx="9" fill="#2d454d"/>
+                    <rect x="80" y="72" width="160" height="246" rx="28" fill="#0a1f33"/>
+                    <rect x="96" y="96" width="128" height="18" rx="9" fill="#1a365d"/>
                     <rect x="96" y="130" width="128" height="78" rx="16" fill="url(#heroA)"/>
-                    <rect x="96" y="226" width="58" height="58" rx="14" fill="#24434b"/>
-                    <rect x="166" y="226" width="58" height="58" rx="14" fill="#b86b12"/>
-                    <circle cx="352" cy="142" r="76" fill="rgba(15,118,110,0.12)" stroke="#0f766e" stroke-dasharray="8 8"/>
-                    <circle cx="352" cy="142" r="38" fill="#0f766e" opacity="0.16"/>
-                    <circle cx="352" cy="142" r="12" fill="#0f766e"/>
-                    <rect x="278" y="242" width="152" height="34" rx="17" fill="#ffffff" stroke="rgba(21,33,38,0.08)"/>
-                    <rect x="278" y="286" width="188" height="22" rx="11" fill="#e8f4f3"/>
-                    <path d="M240 170 C285 170, 294 142, 322 142" fill="none" stroke="#c97a17" stroke-width="4" stroke-linecap="round"/>
-                    <path d="M240 258 C292 258, 307 258, 344 258" fill="none" stroke="#0f766e" stroke-width="4" stroke-linecap="round"/>
-                    <circle cx="240" cy="170" r="7" fill="#c97a17"/>
-                    <circle cx="344" cy="258" r="7" fill="#0f766e"/>
-                    <rect x="278" y="84" width="106" height="26" rx="13" fill="#ffffff" stroke="rgba(21,33,38,0.08)"/>
-                    <rect x="392" y="84" width="58" height="26" rx="13" fill="#fff2df"/>
+                    <rect x="96" y="226" width="58" height="58" rx="14" fill="#0ea5e9"/>
+                    <rect x="166" y="226" width="58" height="58" rx="14" fill="#d60047"/>
+                    <circle cx="352" cy="142" r="76" fill="rgba(15,118,110,0.12)" stroke="#00f0ff" stroke-dasharray="8 8"/>
+                    <circle cx="352" cy="142" r="38" fill="#00f0ff" opacity="0.16"/>
+                    <circle cx="352" cy="142" r="12" fill="#00f0ff"/>
+                    <rect x="278" y="242" width="152" height="34" rx="17" fill="#0f172a" stroke="rgba(21,33,38,0.08)"/>
+                    <rect x="278" y="286" width="188" height="22" rx="11" fill="#052e3d"/>
+                    <path d="M240 170 C285 170, 294 142, 322 142" fill="none" stroke="#ff0055" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M240 258 C292 258, 307 258, 344 258" fill="none" stroke="#00f0ff" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="240" cy="170" r="7" fill="#ff0055"/>
+                    <circle cx="344" cy="258" r="7" fill="#00f0ff"/>
+                    <rect x="278" y="84" width="106" height="26" rx="13" fill="#0f172a" stroke="rgba(21,33,38,0.08)"/>
+                    <rect x="392" y="84" width="58" height="26" rx="13" fill="#2d0615"/>
                   </svg>
                 </div>
                 <div class="svg-note">视觉隐喻：左侧是个体执行，右侧是把判断、检索、表达和并发任务调度组织化之后的中枢形态。</div>
@@ -955,32 +1151,30 @@
         <div class="frame">
           <div class="two-col">
             <div class="stack">
-              <div class="page-kicker">问题定义</div>
-              <h2>先改管理假设，再谈工具使用</h2>
+              <div class="page-kicker">思维破局</div>
+              <h2>做一件事前，先考虑 AI 能不能做</h2>
               <p class="body-copy">
-                真正决定差距的，不是团队是否会用某个模型，而是管理者是否愿意承认一个事实：大量日常工作并不创造判断，只是在消耗判断。AI 原生转型的第一步，是先把“什么必须由人完成，什么应该交给系统完成”重新划线。
+                真正决定差距的，是管理者是否愿意承认：大量日常工作只在消耗时间。AI 原生的第一步是重建直觉——多用 AI 思考，但不拘泥于工具本身，让执行层交给机器，把人类思维留给真正的判断和决策。
               </p>
               <div class="contrast-grid">
                 <article class="contrast-card old">
                   <div class="chapter-chip">传统模式</div>
-                  <strong>硬件 PM = 个体补位者</strong>
+                  <strong>硬件 PM = 人肉执行者</strong>
                   <ul class="bullet-list">
-                    <li>问题定义依赖个人经验，难以复制</li>
-                    <li>信息分散在文档、聊天与老人经验里</li>
+                    <li>问题定义依赖个人经验，低效慢热</li>
+                    <li>遇到新问题先考虑“我该怎么查资料”</li>
                     <li>表达链条长，跨角色后快速失真</li>
                     <li>低价值整理工作挤占关键判断时间</li>
-                    <li>项目推进高度依赖个人带宽上限</li>
                   </ul>
                 </article>
                 <article class="contrast-card new">
                   <div class="chapter-chip">AI-Native 模式</div>
-                  <strong>硬件 PM = 认知编排者</strong>
+                  <strong>硬件 PM = 超级指挥官</strong>
                   <ul class="bullet-list">
-                    <li>先用系统性反驳，提升定义质量</li>
-                    <li>先把知识资产化，再做查询和判断</li>
-                    <li>用原型压缩语义偏差和返工空间</li>
-                    <li>先剥离重复劳动，再释放判断带宽</li>
-                    <li>用并发工作流替代串行等待</li>
+                    <li>遇到问题首先发问：AI 能否代劳？</li>
+                    <li>不仅用工具，而是与 AI 共同思考</li>
+                    <li>把知识抽象化，跨越单一工具的局限</li>
+                    <li>用多模型并发替代人类串行等待</li>
                   </ul>
                 </article>
               </div>
@@ -991,36 +1185,36 @@
                 <p class="panel-copy">从左到右，不是工具升级，而是管理对象的升级：从管理人力动作，转向管理判断流与工作流。</p>
               </div>
               <div class="svg-wrap">
-                <svg viewBox="0 0 520 400" role="img" aria-label="传统 PM 到 AI 原生 PM 的演进示意图">
+                <svg class="drop-shadow-glow" viewBox="0 0 520 400" role="img" aria-label="传统 PM 到 AI 原生 PM 的演进示意图">
                   <defs>
                     <linearGradient id="shiftA" x1="0" x2="1">
-                      <stop offset="0%" stop-color="#f0d8bf"/>
-                      <stop offset="100%" stop-color="#f6efe5"/>
+                      <stop offset="0%" stop-color="#1e1b4b"/>
+                      <stop offset="100%" stop-color="#0f172a"/>
                     </linearGradient>
                     <linearGradient id="shiftB" x1="0" x2="1">
-                      <stop offset="0%" stop-color="#d7f0ec"/>
-                      <stop offset="100%" stop-color="#eef9f8"/>
+                      <stop offset="0%" stop-color="#042f2e"/>
+                      <stop offset="100%" stop-color="#020617"/>
                     </linearGradient>
                   </defs>
                   <rect x="34" y="84" width="172" height="222" rx="28" fill="url(#shiftA)" stroke="rgba(21,33,38,0.08)"/>
                   <rect x="314" y="84" width="172" height="222" rx="28" fill="url(#shiftB)" stroke="rgba(21,33,38,0.08)"/>
-                  <rect x="70" y="118" width="98" height="18" rx="9" fill="#ffffff"/>
-                  <rect x="70" y="156" width="108" height="16" rx="8" fill="#ffffff" opacity="0.7"/>
-                  <rect x="70" y="188" width="84" height="16" rx="8" fill="#ffffff" opacity="0.6"/>
-                  <rect x="70" y="228" width="40" height="40" rx="12" fill="#ffffff" opacity="0.72"/>
-                  <rect x="120" y="228" width="40" height="40" rx="12" fill="#ffffff" opacity="0.5"/>
-                  <path d="M218 194 L300 194" stroke="#c97a17" stroke-width="5" stroke-linecap="round"/>
-                  <path d="M288 180 L300 194 L288 208" fill="none" stroke="#c97a17" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <circle cx="400" cy="136" r="42" fill="rgba(15,118,110,0.14)" stroke="#0f766e" stroke-dasharray="8 8"/>
-                  <circle cx="400" cy="136" r="10" fill="#0f766e"/>
-                  <rect x="346" y="210" width="108" height="22" rx="11" fill="#ffffff"/>
-                  <rect x="346" y="244" width="132" height="22" rx="11" fill="#ffffff" opacity="0.86"/>
-                  <rect x="346" y="278" width="90" height="22" rx="11" fill="#ffffff" opacity="0.72"/>
-                  <circle cx="326" cy="226" r="8" fill="#0f766e"/>
-                  <circle cx="326" cy="258" r="8" fill="#c97a17"/>
+                  <rect x="70" y="118" width="98" height="18" rx="9" fill="#0f172a"/>
+                  <rect x="70" y="156" width="108" height="16" rx="8" fill="#334155" opacity="0.9"/>
+                  <rect x="70" y="188" width="84" height="16" rx="8" fill="#1e293b" opacity="0.9"/>
+                  <rect x="70" y="228" width="40" height="40" rx="12" fill="#0f172a" opacity="0.72"/>
+                  <rect x="120" y="228" width="40" height="40" rx="12" fill="#475569" opacity="0.9"/>
+                  <path d="M218 194 L300 194" stroke="#ff0055" stroke-width="5" stroke-linecap="round"/>
+                  <path d="M288 180 L300 194 L288 208" fill="none" stroke="#ff0055" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="400" cy="136" r="42" fill="rgba(15,118,110,0.14)" stroke="#00f0ff" stroke-dasharray="8 8"/>
+                  <circle cx="400" cy="136" r="10" fill="#00f0ff"/>
+                  <rect x="346" y="210" width="108" height="22" rx="11" fill="#0f172a"/>
+                  <rect x="346" y="244" width="132" height="22" rx="11" fill="#0f172a" opacity="0.86"/>
+                  <rect x="346" y="278" width="90" height="22" rx="11" fill="#0f172a" opacity="0.72"/>
+                  <circle cx="326" cy="226" r="8" fill="#00f0ff"/>
+                  <circle cx="326" cy="258" r="8" fill="#ff0055"/>
                   <circle cx="326" cy="290" r="8" fill="#152126"/>
-                  <text x="74" y="338" font-size="22" fill="#7b5b3a" font-weight="700">线性执行</text>
-                  <text x="342" y="338" font-size="22" fill="#0f766e" font-weight="700">并行指挥</text>
+                  <text x="74" y="338" font-size="22" fill="#ff0055" font-weight="700">线性执行</text>
+                  <text x="342" y="338" font-size="22" fill="#00f0ff" font-weight="700">并行指挥</text>
                 </svg>
               </div>
               <div class="pull-quote">
@@ -1045,28 +1239,28 @@
               <div class="chapter-list">
                 <article class="chapter-card">
                   <div class="chapter-chip">01</div>
-                  <strong>讨论先行</strong>
-                  <p>先做反驳，再做定义，让结论在生成前先经历冲撞。</p>
+                  <strong>创建本地知识库</strong>
+                  <p>用 NotebookLLM 沉淀私域资料，让回答自带专业上下文。</p>
                 </article>
                 <article class="chapter-card">
                   <div class="chapter-chip">02</div>
-                  <strong>外脑查询</strong>
-                  <p>把零散文档沉淀为可调用上下文，而不是个人记忆负担。</p>
+                  <strong>与 AI 共创共思</strong>
+                  <p>在 AI 生成的初始 PRD 基础上，再进行深度决策与裁剪。</p>
                 </article>
                 <article class="chapter-card">
                   <div class="chapter-chip">03</div>
-                  <strong>原型驱动</strong>
-                  <p>把抽象需求变成具体交互，缩短理解链路。</p>
+                  <strong>高频探讨可行性</strong>
+                  <p>把 AI 当作技术架构师，随时拷问方案的落地边界。</p>
                 </article>
                 <article class="chapter-card">
                   <div class="chapter-chip">04</div>
-                  <strong>自动化前置</strong>
-                  <p>把重复劳动默认交给代理层，而不是交给耐心。</p>
+                  <strong>前置自动化思维</strong>
+                  <p>永远先问：这件事能不能通过 AI 或脚本闭环？</p>
                 </article>
                 <article class="chapter-card">
                   <div class="chapter-chip">05</div>
-                  <strong>多线程指挥</strong>
-                  <p>用并发生成扩大搜索空间，再由 PM 完成收敛。</p>
+                  <strong>多 AI 并行指挥</strong>
+                  <p>Jules、Copilot、Cursor 联合作战，各司其职。</p>
                 </article>
               </div>
             </div>
@@ -1078,11 +1272,11 @@
                 <path d="M120 178 C164 140, 194 126, 260 82" fill="none" stroke="rgba(201,122,23,0.24)" stroke-width="3"/>
               </svg>
               <div class="core-ring">AI-Native<br>硬件 PM<br>治理闭环</div>
-              <div class="orbit-node n1"><strong>讨论</strong><span>先暴露错误，再形成定义</span></div>
-              <div class="orbit-node n2"><strong>查询</strong><span>先沉淀资产，再做调用</span></div>
-              <div class="orbit-node n3"><strong>原型</strong><span>先对齐理解，再推进开发</span></div>
-              <div class="orbit-node n4"><strong>自动化</strong><span>先剥离重复，再释放人力</span></div>
-              <div class="orbit-node n5"><strong>指挥</strong><span>先并发探索，再统一裁决</span></div>
+              <div class="orbit-node n1"><strong>本地外脑</strong><span>沉淀私域，强化专业基座</span></div>
+              <div class="orbit-node n2"><strong>共频思考</strong><span>站在巨人的 PRD 上决策</span></div>
+              <div class="orbit-node n3"><strong>可行推演</strong><span>让 AI 充当红军暴露风险</span></div>
+              <div class="orbit-node n4"><strong>AI 优先</strong><span>凡事问机器，解放创造力</span></div>
+              <div class="orbit-node n5"><strong>多核并发</strong><span>调度各端 Agent 协同作战</span></div>
             </div>
           </div>
         </div>
@@ -1092,80 +1286,79 @@
         <div class="frame">
           <div class="two-col">
             <div class="stack">
-              <div class="page-kicker">章节 1-2</div>
-              <h2>先重构前两件事：定义问题的方式，以及保存知识的方式</h2>
+              <div class="page-kicker">知识与共创</div>
+              <h2>建立本地 AI 知识库，在巨人的肩膀上做决策</h2>
               <div class="step-list">
                 <article class="step-item">
                   <div class="step-no">01</div>
                   <div>
-                    <h4>永远先和 AI 讨论</h4>
-                    <p class="step-copy">让 AI 先扮演最尖锐的反方，在立项前持续攻击你的用户假设、技术路径、成本结构与组织配合方式。</p>
+                    <h4>创建本地知识库 NotebookLLM</h4>
+                    <p class="step-copy">把 Datasheet、竞品评测、供应商历史、测试记录喂给本地外脑，确保 AI 的回答自带公司上下文，安全且专业。</p>
                   </div>
                 </article>
                 <article class="step-item">
                   <div class="step-no">02</div>
                   <div>
-                    <h4>不背参数，构建知识外脑</h4>
-                    <p class="step-copy">把 Datasheet、法规标准、试验记录和供应商经验沉淀为团队可检索、可追问、可追责的知识系统。</p>
+                    <h4>在 AI 的 PRD 上再进行决策</h4>
+                    <p class="step-copy">别自己从零写框架。让 AI 搭好产品骨架与逻辑流，你只需要审阅、裁剪、并进行高维判断和定调。</p>
                   </div>
                 </article>
               </div>
               <div class="workflow-grid">
                 <article class="workflow-box">
-                  <strong>红队压力测试</strong>
-                  <p class="panel-copy">让 AI 扮演不同利益相关方，对同一个定义反复施压。不是为了获得答案，而是为了暴露盲区。</p>
+                  <strong>高频探讨可行性</strong>
+                  <p class="panel-copy">把 AI 当作技术合伙人。设计新功能时，先和 AI 讨论功耗、热设计、打样周期的冲突，提前排雷。</p>
                 </article>
                 <article class="workflow-box">
-                  <strong>精准条件查询</strong>
-                  <p class="panel-copy">不再从文档目录开始，而是从约束条件开始。所有查询都必须带着电压、功耗、封装、认证、供货等筛选维度进入。</p>
+                  <strong>多用 AI 思考</strong>
+                  <p class="panel-copy">不拘泥于特定工具，核心是培养一种“逢山开路先问 AI”的条件反射。无论是用 Notebook 整理，还是开对话流脑爆。</p>
                 </article>
               </div>
               <div class="tool-badges">
-                <span class="tool-pill">GPT-5.4 级推理模型</span>
-                <span class="tool-pill">Claude 4.x 长上下文模型</span>
-                <span class="tool-pill">Gemini 2.5 Pro 类多模态模型</span>
-                <span class="tool-pill">企业私域知识代理</span>
-                <span class="tool-pill">MCP / 内部文档接口层</span>
+                <span class="tool-pill">Jules Autonomous Agent</span>
+                <span class="tool-pill">Cursor / AI IDE</span>
+                <span class="tool-pill">Github Copilot</span>
+                <span class="tool-pill">NotebookLLM</span>
               </div>
             </div>
             <div class="stack">
               <article class="illustration-card">
                 <div>
-                  <div class="panel-label">图 1 / 讨论先行</div>
-                  <p class="panel-copy">AI 不只是回答者，而是你在产品定义阶段的连续反驳器。</p>
+                  <div class="panel-label">图 1 / 协同探讨</div>
+                  <p class="panel-copy">AI 是你桌面上的技术合伙人，在纸面上完成无数次闭环可行性验证。</p>
                 </div>
                 <div class="svg-wrap">
-                  <svg viewBox="0 0 520 290" role="img" aria-label="AI 对话与红队讨论图示">
-                    <rect x="26" y="24" width="468" height="240" rx="30" fill="#fbf8f2" stroke="rgba(21,33,38,0.08)"/>
-                    <rect x="50" y="54" width="160" height="54" rx="20" fill="#e7f5f3"/>
-                    <rect x="312" y="54" width="160" height="62" rx="22" fill="#f8ead9"/>
-                    <rect x="50" y="126" width="208" height="58" rx="22" fill="#ffffff" stroke="rgba(21,33,38,0.08)"/>
-                    <rect x="274" y="144" width="198" height="56" rx="22" fill="#ffffff" stroke="rgba(21,33,38,0.08)"/>
-                    <circle cx="78" cy="80" r="12" fill="#0f766e"/>
-                    <circle cx="340" cy="80" r="12" fill="#c97a17"/>
-                    <path d="M216 82 L300 82" stroke="#0f766e" stroke-width="4" stroke-dasharray="6 8"/>
-                    <path d="M266 184 L260 184 C246 184, 232 176, 232 162 C232 148, 246 140, 260 140 L280 140" fill="none" stroke="#c97a17" stroke-width="4" stroke-linecap="round"/>
+                  <svg class="drop-shadow-glow" viewBox="0 0 520 290" role="img" aria-label="AI 对话与红队讨论图示">
+                    <rect x="26" y="24" width="468" height="240" rx="30" fill="#020617" stroke="rgba(21,33,38,0.08)"/>
+                    <rect x="50" y="54" width="160" height="54" rx="20" fill="#083344"/>
+                    <rect x="312" y="54" width="160" height="62" rx="22" fill="#4c0519"/>
+                    <rect x="50" y="126" width="208" height="58" rx="22" fill="#0f172a" stroke="rgba(21,33,38,0.08)"/>
+                    <rect x="274" y="144" width="198" height="56" rx="22" fill="#0f172a" stroke="rgba(21,33,38,0.08)"/>
+                    <circle cx="78" cy="80" r="12" fill="#00f0ff"/>
+                    <circle cx="340" cy="80" r="12" fill="#ff0055"/>
+                    <path d="M216 82 L300 82" stroke="#00f0ff" stroke-width="4" stroke-dasharray="6 8"/>
+                    <path d="M266 184 L260 184 C246 184, 232 176, 232 162 C232 148, 246 140, 260 140 L280 140" fill="none" stroke="#ff0055" stroke-width="4" stroke-linecap="round"/>
                   </svg>
                 </div>
                 <div class="svg-note">核心不是“多问几个问题”，而是建立一套在定义阶段主动引入反对意见的机制。</div>
               </article>
               <article class="illustration-card amber">
                 <div>
-                  <div class="panel-label">图 2 / 外脑结构</div>
-                  <p class="panel-copy">行业报告、法规标准、手册和测试经验，都不应该只躺在收藏夹。</p>
+                  <div class="panel-label">图 2 / NotebookLLM 架构</div>
+                  <p class="panel-copy">将零散文档灌入本地模型，让每一次追问都基于团队的最高认知。</p>
                 </div>
                 <div class="svg-wrap">
-                  <svg viewBox="0 0 520 290" role="img" aria-label="知识外脑结构图">
-                    <rect x="204" y="88" width="112" height="112" rx="28" fill="#0f766e" opacity="0.16"/>
-                    <rect x="224" y="108" width="72" height="72" rx="20" fill="#0f766e"/>
-                    <rect x="56" y="54" width="116" height="48" rx="18" fill="#ffffff" stroke="rgba(21,33,38,0.08)"/>
-                    <rect x="56" y="188" width="116" height="48" rx="18" fill="#ffffff" stroke="rgba(21,33,38,0.08)"/>
-                    <rect x="348" y="54" width="116" height="48" rx="18" fill="#ffffff" stroke="rgba(21,33,38,0.08)"/>
-                    <rect x="348" y="188" width="116" height="48" rx="18" fill="#ffffff" stroke="rgba(21,33,38,0.08)"/>
-                    <path d="M172 78 L224 130" stroke="#c97a17" stroke-width="4"/>
-                    <path d="M172 212 L224 160" stroke="#c97a17" stroke-width="4"/>
-                    <path d="M348 78 L296 130" stroke="#0f766e" stroke-width="4"/>
-                    <path d="M348 212 L296 160" stroke="#0f766e" stroke-width="4"/>
+                  <svg class="drop-shadow-glow" viewBox="0 0 520 290" role="img" aria-label="知识外脑结构图">
+                    <rect x="204" y="88" width="112" height="112" rx="28" fill="#00f0ff" opacity="0.16"/>
+                    <rect x="224" y="108" width="72" height="72" rx="20" fill="#00f0ff"/>
+                    <rect x="56" y="54" width="116" height="48" rx="18" fill="#0f172a" stroke="rgba(21,33,38,0.08)"/>
+                    <rect x="56" y="188" width="116" height="48" rx="18" fill="#0f172a" stroke="rgba(21,33,38,0.08)"/>
+                    <rect x="348" y="54" width="116" height="48" rx="18" fill="#0f172a" stroke="rgba(21,33,38,0.08)"/>
+                    <rect x="348" y="188" width="116" height="48" rx="18" fill="#0f172a" stroke="rgba(21,33,38,0.08)"/>
+                    <path d="M172 78 L224 130" stroke="#ff0055" stroke-width="4"/>
+                    <path d="M172 212 L224 160" stroke="#ff0055" stroke-width="4"/>
+                    <path d="M348 78 L296 130" stroke="#00f0ff" stroke-width="4"/>
+                    <path d="M348 212 L296 160" stroke="#00f0ff" stroke-width="4"/>
                   </svg>
                 </div>
                 <div class="svg-note">输入源应覆盖 Datasheet、3C / FCC / SRRC 标准、竞品拆解、历史测试复盘、供应商 FAQ 与内部会议纪要。</div>
@@ -1179,16 +1372,16 @@
         <div class="frame">
           <div class="two-col">
             <div class="stack">
-              <div class="page-kicker">章节 3-4</div>
-              <h2>第三、四章要解决的，是组织里最昂贵的两种损耗</h2>
+              <div class="page-kicker">执行剥离</div>
+              <h2>做一件事前，先考虑 AI 能不能做</h2>
               <div class="mini-grid">
                 <article class="mini-card">
-                  <strong>表达损耗</strong>
-                  <p class="panel-copy">长 PRD 的根本问题不只是冗长，而是它会在跨部门传递中持续失真。原型的管理价值，是把“我以为你理解了”替换成“我们确实看到了同一个东西”。</p>
+                  <strong>机器代劳的直觉</strong>
+                  <p class="panel-copy">无论是起草文档大纲、对比规格表、清洗测试 Log 数据，永远先向自己发问：“这事能否用一条 prompt 或脚本搞定？”</p>
                 </article>
                 <article class="mini-card">
-                  <strong>执行损耗</strong>
-                  <p class="panel-copy">重复劳动吞掉的不是时间本身，而是管理带宽。自动化前置的意义，是把团队从大量机械协调中解放出来，保留人对例外情况和关键决策的掌控。</p>
+                  <strong>不拘泥于工具</strong>
+                  <p class="panel-copy">核心不在于熟练使用哪一款软件，而在于你如何把“需求”转译给代理机器。把重复剥离给 AI，将时间留给“人性的判断”。</p>
                 </article>
               </div>
               <div class="matrix">
@@ -1221,19 +1414,19 @@
                   <p class="panel-copy">页面里要出现“能跑的东西”，这会让课程质感更具体。</p>
                 </div>
                 <div class="svg-wrap">
-                  <svg viewBox="0 0 520 290" role="img" aria-label="移动端原型与网页 Demo 图示">
-                    <rect x="56" y="28" width="154" height="236" rx="30" fill="#12242a"/>
-                    <rect x="74" y="54" width="118" height="26" rx="13" fill="#2b434b"/>
-                    <rect x="74" y="96" width="118" height="60" rx="16" fill="#0f766e"/>
-                    <rect x="74" y="170" width="54" height="54" rx="14" fill="#ffffff"/>
-                    <rect x="138" y="170" width="54" height="54" rx="14" fill="#f5e8d3"/>
-                    <rect x="256" y="58" width="210" height="154" rx="24" fill="#ffffff" stroke="rgba(21,33,38,0.08)"/>
-                    <rect x="278" y="82" width="96" height="20" rx="10" fill="#e0f2f1"/>
-                    <rect x="278" y="118" width="166" height="16" rx="8" fill="#edf3f2"/>
-                    <rect x="278" y="146" width="144" height="16" rx="8" fill="#edf3f2"/>
-                    <rect x="278" y="174" width="80" height="16" rx="8" fill="#f8ead9"/>
-                    <path d="M210 140 L250 140" stroke="#c97a17" stroke-width="4" stroke-linecap="round"/>
-                    <path d="M238 126 L250 140 L238 154" fill="none" stroke="#c97a17" stroke-width="4"/>
+                  <svg class="drop-shadow-glow" viewBox="0 0 520 290" role="img" aria-label="移动端原型与网页 Demo 图示">
+                    <rect x="56" y="28" width="154" height="236" rx="30" fill="#030712"/>
+                    <rect x="74" y="54" width="118" height="26" rx="13" fill="#1e293b"/>
+                    <rect x="74" y="96" width="118" height="60" rx="16" fill="#00f0ff"/>
+                    <rect x="74" y="170" width="54" height="54" rx="14" fill="#0f172a"/>
+                    <rect x="138" y="170" width="54" height="54" rx="14" fill="#1f1228"/>
+                    <rect x="256" y="58" width="210" height="154" rx="24" fill="#0f172a" stroke="rgba(21,33,38,0.08)"/>
+                    <rect x="278" y="82" width="96" height="20" rx="10" fill="#0f766e"/>
+                    <rect x="278" y="118" width="166" height="16" rx="8" fill="#1e293b"/>
+                    <rect x="278" y="146" width="144" height="16" rx="8" fill="#1e293b"/>
+                    <rect x="278" y="174" width="80" height="16" rx="8" fill="#4c0519"/>
+                    <path d="M210 140 L250 140" stroke="#ff0055" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M238 126 L250 140 L238 154" fill="none" stroke="#ff0055" stroke-width="4"/>
                   </svg>
                 </div>
                 <div class="svg-note">原型不是装饰图，而是用来提前暴露歧义、遗漏和错误假设的讨论介质。</div>
@@ -1244,17 +1437,17 @@
                   <p class="panel-copy">把报价单、BOM 和测试数据扔进同一条自动化管道。</p>
                 </div>
                 <div class="svg-wrap">
-                  <svg viewBox="0 0 520 290" role="img" aria-label="自动化数据处理流程图">
-                    <rect x="48" y="110" width="92" height="60" rx="18" fill="#f5e8d3"/>
-                    <rect x="182" y="92" width="120" height="96" rx="22" fill="#0f766e" opacity="0.9"/>
+                  <svg class="drop-shadow-glow" viewBox="0 0 520 290" role="img" aria-label="自动化数据处理流程图">
+                    <rect x="48" y="110" width="92" height="60" rx="18" fill="#1f1228"/>
+                    <rect x="182" y="92" width="120" height="96" rx="22" fill="#00f0ff" opacity="0.9"/>
                     <rect x="346" y="110" width="126" height="60" rx="18" fill="#dff3f5"/>
-                    <path d="M140 140 L182 140" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-                    <path d="M302 140 L346 140" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-                    <circle cx="160" cy="140" r="6" fill="#c97a17"/>
-                    <circle cx="324" cy="140" r="6" fill="#c97a17"/>
+                    <path d="M140 140 L182 140" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M302 140 L346 140" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="160" cy="140" r="6" fill="#ff0055"/>
+                    <circle cx="324" cy="140" r="6" fill="#ff0055"/>
                     <rect x="204" y="114" width="76" height="14" rx="7" fill="#dff3f5"/>
-                    <rect x="204" y="138" width="92" height="12" rx="6" fill="#ffffff" opacity="0.72"/>
-                    <rect x="204" y="160" width="68" height="12" rx="6" fill="#ffffff" opacity="0.56"/>
+                    <rect x="204" y="138" width="92" height="12" rx="6" fill="#0f172a" opacity="0.72"/>
+                    <rect x="204" y="160" width="68" height="12" rx="6" fill="#0f172a" opacity="0.56"/>
                   </svg>
                 </div>
                 <div class="svg-note">要讲清楚：自动化并不替代判断，它只是把判断前面的脏活、累活和重复劳动系统性剥离出去。</div>
@@ -1268,27 +1461,27 @@
         <div class="frame">
           <div class="two-col">
             <div class="stack">
-              <div class="page-kicker">章节 5</div>
-              <h2>第五章真正讨论的是：管理者如何接管 AI 时代的生产组织</h2>
+              <div class="page-kicker">并行指挥</div>
+              <h2>考虑多 AI 并行：Jules、Copilot 与 Cursor 的多维轰炸</h2>
               <p class="body-copy">
-                AI 时代的 PM 核心价值，不再是亲自写完每一份材料，而是定义任务边界、配置不同代理角色、建立质量门槛，并在冲突信息中作出最后判断。管理者点头的关键，不是看到更多产出，而是看到产出开始具备可分工、可校验、可追责的结构。
+                不再是单人单机的线性输出。一个成熟的 AI-Native PM 是坐在中控台前，调动不同的 AI 各司其职，在代码、文档、设计、测试上同步推进。
               </p>
               <div class="persona-grid">
                 <article class="persona-card">
-                  <strong>并发任务 1</strong>
-                  <p class="panel-copy">竞品评论、卖点与用户抱怨结构化归因</p>
+                  <strong>代码/工程：Cursor</strong>
+                  <p class="panel-copy">理解全量代码仓库，自动补充业务逻辑，快速打出硬件控制台的原型页面。</p>
                 </article>
                 <article class="persona-card">
-                  <strong>并发任务 2</strong>
-                  <p class="panel-copy">测试计划、风险清单与异常场景穷举</p>
+                  <strong>深度/执行：Jules</strong>
+                  <p class="panel-copy">作为强大的自主智能体解决复杂的多步任务，接管环境配置、深度调试与长链条工作流。</p>
                 </article>
                 <article class="persona-card">
-                  <strong>并发任务 3</strong>
-                  <p class="panel-copy">概念图、交互草图与控制端 Demo</p>
+                  <strong>文档/日常：Copilot</strong>
+                  <p class="panel-copy">内嵌于 Office 与日常工具，一键生成汇报 PPT 和会议纪要。</p>
                 </article>
                 <article class="persona-card">
-                  <strong>并发任务 4</strong>
-                  <p class="panel-copy">命名方向、市场叙事与对外表达框架</p>
+                  <strong>思考/推演：Claude & GPT</strong>
+                  <p class="panel-copy">作为长文本专家进行需求架构、竞品拆解、以及用户体验痛点预演。</p>
                 </article>
               </div>
               <div class="pull-quote">
@@ -1296,10 +1489,10 @@
                 <p>这章真正要建立的是一种默认动作：任何复杂任务都先拆成多个并发工作流，再由责任人完成收敛、取舍与背书。</p>
               </div>
               <div class="tool-badges">
-                <span class="tool-pill">Agentic IDE</span>
-                <span class="tool-pill">企业任务编排层</span>
-                <span class="tool-pill">多上下文并行</span>
-                <span class="tool-pill">内部工作流代理</span>
+                <span class="tool-pill">Jules Autonomous Agent</span>
+                <span class="tool-pill">Cursor / AI IDE</span>
+                <span class="tool-pill">Github Copilot</span>
+                <span class="tool-pill">NotebookLLM</span>
               </div>
             </div>
             <article class="illustration-card">
@@ -1308,21 +1501,21 @@
                 <p class="panel-copy">这张图要把“你在中间，四路任务并发跑”的感觉做出来。</p>
               </div>
               <div class="svg-wrap">
-                <svg viewBox="0 0 520 420" role="img" aria-label="多任务控制台图示">
-                  <circle cx="260" cy="210" r="86" fill="rgba(15,118,110,0.14)" stroke="#0f766e" stroke-dasharray="8 10"/>
-                  <circle cx="260" cy="210" r="40" fill="#0f766e" opacity="0.9"/>
-                  <rect x="44" y="58" width="136" height="74" rx="22" fill="#ffffff" stroke="rgba(21,33,38,0.08)"/>
-                  <rect x="340" y="58" width="136" height="74" rx="22" fill="#ffffff" stroke="rgba(21,33,38,0.08)"/>
-                  <rect x="44" y="288" width="136" height="74" rx="22" fill="#ffffff" stroke="rgba(21,33,38,0.08)"/>
-                  <rect x="340" y="288" width="136" height="74" rx="22" fill="#ffffff" stroke="rgba(21,33,38,0.08)"/>
-                  <path d="M180 124 C208 144, 220 162, 236 184" fill="none" stroke="#c97a17" stroke-width="4"/>
-                  <path d="M340 124 C314 140, 302 160, 286 184" fill="none" stroke="#0f766e" stroke-width="4"/>
-                  <path d="M180 296 C206 282, 220 262, 236 238" fill="none" stroke="#0f766e" stroke-width="4"/>
-                  <path d="M340 296 C314 282, 300 262, 286 238" fill="none" stroke="#c97a17" stroke-width="4"/>
-                  <rect x="66" y="82" width="70" height="12" rx="6" fill="#e0f2f1"/>
-                  <rect x="362" y="82" width="70" height="12" rx="6" fill="#f8ead9"/>
-                  <rect x="66" y="312" width="70" height="12" rx="6" fill="#f8ead9"/>
-                  <rect x="362" y="312" width="70" height="12" rx="6" fill="#e0f2f1"/>
+                <svg class="drop-shadow-glow" viewBox="0 0 520 420" role="img" aria-label="多任务控制台图示">
+                  <circle cx="260" cy="210" r="86" fill="rgba(15,118,110,0.14)" stroke="#00f0ff" stroke-dasharray="8 10"/>
+                  <circle cx="260" cy="210" r="40" fill="#00f0ff" opacity="0.9"/>
+                  <rect x="44" y="58" width="136" height="74" rx="22" fill="#0f172a" stroke="rgba(21,33,38,0.08)"/>
+                  <rect x="340" y="58" width="136" height="74" rx="22" fill="#0f172a" stroke="rgba(21,33,38,0.08)"/>
+                  <rect x="44" y="288" width="136" height="74" rx="22" fill="#0f172a" stroke="rgba(21,33,38,0.08)"/>
+                  <rect x="340" y="288" width="136" height="74" rx="22" fill="#0f172a" stroke="rgba(21,33,38,0.08)"/>
+                  <path d="M180 124 C208 144, 220 162, 236 184" fill="none" stroke="#ff0055" stroke-width="4"/>
+                  <path d="M340 124 C314 140, 302 160, 286 184" fill="none" stroke="#00f0ff" stroke-width="4"/>
+                  <path d="M180 296 C206 282, 220 262, 236 238" fill="none" stroke="#00f0ff" stroke-width="4"/>
+                  <path d="M340 296 C314 282, 300 262, 286 238" fill="none" stroke="#ff0055" stroke-width="4"/>
+                  <rect x="66" y="82" width="70" height="12" rx="6" fill="#0f766e"/>
+                  <rect x="362" y="82" width="70" height="12" rx="6" fill="#4c0519"/>
+                  <rect x="66" y="312" width="70" height="12" rx="6" fill="#4c0519"/>
+                  <rect x="362" y="312" width="70" height="12" rx="6" fill="#0f766e"/>
                 </svg>
               </div>
               <div class="svg-note">1 小时完成过去 1 周的材料准备量，靠的不是更快打字，而是并发任务编排。</div>
@@ -1368,17 +1561,17 @@
                 <p class="panel-copy">这里用更强的图形感告诉管理者和团队，这不是一门停留在口号层面的内部分享。</p>
               </div>
               <div class="svg-wrap">
-                <svg viewBox="0 0 520 380" role="img" aria-label="组织能力变化雷达图与柱状图">
-                  <polygon points="260,60 380,130 340,270 180,270 140,130" fill="rgba(15,118,110,0.08)" stroke="#0f766e"/>
-                  <polygon points="260,98 344,145 316,244 204,244 176,145" fill="rgba(201,122,23,0.12)" stroke="#c97a17"/>
+                <svg class="drop-shadow-glow" viewBox="0 0 520 380" role="img" aria-label="组织能力变化雷达图与柱状图">
+                  <polygon points="260,60 380,130 340,270 180,270 140,130" fill="rgba(15,118,110,0.08)" stroke="#00f0ff"/>
+                  <polygon points="260,98 344,145 316,244 204,244 176,145" fill="rgba(201,122,23,0.12)" stroke="#ff0055"/>
                   <line x1="260" y1="60" x2="260" y2="300" stroke="rgba(21,33,38,0.12)"/>
                   <line x1="140" y1="130" x2="380" y2="270" stroke="rgba(21,33,38,0.12)"/>
                   <line x1="380" y1="130" x2="140" y2="270" stroke="rgba(21,33,38,0.12)"/>
-                  <rect x="64" y="306" width="52" height="38" rx="14" fill="#0f766e"/>
-                  <rect x="132" y="286" width="52" height="58" rx="14" fill="#c97a17"/>
+                  <rect x="64" y="306" width="52" height="38" rx="14" fill="#00f0ff"/>
+                  <rect x="132" y="286" width="52" height="58" rx="14" fill="#ff0055"/>
                   <rect x="200" y="264" width="52" height="80" rx="14" fill="#152126"/>
-                  <rect x="268" y="250" width="52" height="94" rx="14" fill="#0f766e" opacity="0.85"/>
-                  <rect x="336" y="234" width="52" height="110" rx="14" fill="#c97a17" opacity="0.88"/>
+                  <rect x="268" y="250" width="52" height="94" rx="14" fill="#00f0ff" opacity="0.85"/>
+                  <rect x="336" y="234" width="52" height="110" rx="14" fill="#ff0055" opacity="0.88"/>
                 </svg>
               </div>
                 <div class="svg-note">更适合解释为四类组织能力：前置判断、共识建立、劳动剥离、并发协同。</div>
@@ -1395,31 +1588,10 @@
               <h2>如果用于内部研修，建议按“组织改造顺序”而不是“工具展示顺序”来排</h2>
               <div class="roadmap">
                 <article class="roadmap-item">
-                  <strong>Part 1</strong>
-                  <div>
-                    <h4>认知唤醒</h4>
-                    <p class="body-copy">先把旧工作方式的问题讲透，让大家理解为什么看似忙碌的团队，常常仍然产出缓慢、返工频繁、共识脆弱。</p>
-                  </div>
-                </article>
-                <article class="roadmap-item">
-                  <strong>Part 2</strong>
-                  <div>
-                    <h4>五大方法论拆解</h4>
-                    <p class="body-copy">每章都采用“损耗识别 + 新分工方式 + 可落地动作”的讲法，让课程直接对应组织问题。</p>
-                  </div>
-                </article>
-                <article class="roadmap-item">
-                  <strong>Part 3</strong>
-                  <div>
-                    <h4>现场演示</h4>
-                    <p class="body-copy">演示 AI 讨论、私域知识调用、原型生成、脚本自动化与并发任务编排。</p>
-                  </div>
-                </article>
-                <article class="roadmap-item">
                   <strong>Part 4</strong>
                   <div>
-                    <h4>带走模板</h4>
-                    <p class="body-copy">让团队带走一套内部可复用的提示框架、知识库结构、自动化任务模板与评审口径。</p>
+                    <h4>重塑自我定位</h4>
+                    <p class="body-copy">放下骄傲：在 AI 的架构上剪裁，而不是在白纸上挣扎。</p>
                   </div>
                 </article>
               </div>
@@ -1440,16 +1612,16 @@
                   <p class="panel-copy">结尾不需要口号感，而要把整门课收束成一个能指导实际工作的判断框架。</p>
                 </div>
                 <div class="svg-wrap">
-                  <svg viewBox="0 0 520 280" role="img" aria-label="课程结尾收束图示">
+                  <svg class="drop-shadow-glow" viewBox="0 0 520 280" role="img" aria-label="课程结尾收束图示">
                     <rect x="56" y="54" width="408" height="172" rx="32" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
                     <circle cx="136" cy="140" r="40" fill="rgba(201,122,23,0.22)"/>
                     <circle cx="260" cy="140" r="54" fill="rgba(15,118,110,0.26)"/>
                     <circle cx="384" cy="140" r="40" fill="rgba(201,122,23,0.22)"/>
-                    <path d="M176 140 L206 140" stroke="#ffffff" stroke-width="4"/>
-                    <path d="M314 140 L344 140" stroke="#ffffff" stroke-width="4"/>
-                    <text x="98" y="146" font-size="18" fill="#ffffff">思考</text>
-                    <text x="232" y="146" font-size="18" fill="#ffffff">外脑</text>
-                    <text x="346" y="146" font-size="18" fill="#ffffff">协同</text>
+                    <path d="M176 140 L206 140" stroke="#38bdf8" stroke-width="4"/>
+                    <path d="M314 140 L344 140" stroke="#38bdf8" stroke-width="4"/>
+                    <text x="98" y="146" font-size="18" fill="#0f172a">思考</text>
+                    <text x="232" y="146" font-size="18" fill="#0f172a">外脑</text>
+                    <text x="346" y="146" font-size="18" fill="#0f172a">协同</text>
                   </svg>
                 </div>
                 <div class="svg-note">讨论先行、外脑查询、原型驱动、自动化前置、指挥控制，最终都服务于同一件事：把个体经验劳动升级为组织能力。</div>
@@ -1479,6 +1651,16 @@
       });
       prevBtn.disabled = index === 0;
       nextBtn.disabled = index === slides.length - 1;
+
+      // Trigger animations for current slide
+      const currentSlide = slides[index];
+      const animElements = currentSlide.querySelectorAll('.animate-on-scroll');
+      animElements.forEach(el => {
+        el.style.animation = 'none';
+        el.offsetHeight; // trigger reflow
+        el.style.animation = null;
+        el.classList.add('animate-slide-up');
+      });
     }
 
     function goToSlide(index) {
@@ -1513,7 +1695,7 @@
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = slides.indexOf(entry.target);
-            if (index !== -1) {
+            if (index !== -1 && index !== activeIndex) {
               updateUI(index);
             }
           }
@@ -1526,6 +1708,18 @@
     );
 
     slides.forEach((slide) => observer.observe(slide));
+
+    // Initialize animations
+    document.querySelectorAll('.slide').forEach(slide => {
+       const elementsToAnimate = slide.querySelectorAll('h1, h2, h3, .lead, .body-copy, .stat-card, .illustration-card, .contrast-card, .workflow-box, .mini-card, .persona-card, .roadmap-item, .benefit-card');
+       elementsToAnimate.forEach((el, i) => {
+         el.classList.add('animate-on-scroll');
+         // stagger delays based on DOM order
+         const delayClass = `delay-${Math.min((i + 1) * 100, 500)}`;
+         el.classList.add(delayClass);
+       });
+    });
+
     updateUI(0);
   </script>
 </body>
